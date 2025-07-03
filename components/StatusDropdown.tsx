@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   dropdown: {
     margin: 16,
     marginLeft: 5,
-    height: 50,
+    height: 35,
     width: 150,
     backgroundColor: "white",
     borderRadius: 12,
@@ -124,12 +124,15 @@ const styles = StyleSheet.create({
   textItem: {
     flex: 1,
     fontSize: 16,
+    fontFamily: "Questrial", // Add this
   },
   placeholderStyle: {
     fontSize: 16,
+    fontFamily: "Questrial", // Add this
   },
   selectedTextStyle: {
     fontSize: 16,
+    fontFamily: "Questrial", // Add this
   },
   iconStyle: {
     width: 20,

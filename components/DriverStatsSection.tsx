@@ -31,7 +31,10 @@ export default function DriverStatsSection() {
         }}
       >
         <View style={{ flex: 1, maxWidth: "95%", minWidth: "40%" }}>
-          <ThemedText type="title" style={styles.welcomeText}>
+          <ThemedText
+            type="title"
+            style={[styles.welcomeText, { fontWeight: "700" }]}
+          >
             Welcome back, {driverData.name}!
           </ThemedText>
         </View>
@@ -51,25 +54,59 @@ export default function DriverStatsSection() {
             {
               borderColor: "#4CAF50",
               borderWidth: 2,
-              backgroundColor: "#cef2d0",
+              backgroundColor: "#4CAF50",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              paddingRight: 0,
             },
           ]}
         >
-          <ThemedText type="subtitle" style={styles.statValue}>
-            Rs {driverData.todayEarnings.toFixed(2)}
-          </ThemedText>
+          <View
+            style={{
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flex: 1,
+            }}
+          >
+            <ThemedText
+              style={[
+                styles.statLabel,
+                {
+                  color: "#fff",
+                  opacity: 0.95,
+                  fontWeight: "600",
+                },
+              ]}
+            >
+              {"Today's Earnings"}
+            </ThemedText>
+            <ThemedText
+              type="default"
+              style={[
+                styles.statValue,
+                {
+                  color: "#fff",
+                  marginTop: 10,
+                  fontSize: 24,
+                },
+              ]}
+            >
+              Rs {driverData.todayEarnings.toFixed(2)}
+            </ThemedText>
+          </View>
+
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              paddingTop: 4,
-              opacity: 0.6,
+              padding: 3,
+              marginRight: 6,
+              opacity: 0.8,
+              borderRadius: 50,
+              backgroundColor: "#79d47c",
             }}
           >
-            <MaterialIcons name="attach-money" size={18} color="#2c8230" />
-            <ThemedText style={[styles.statLabel, { color: "#2c8230" }]}>
-              {"Today's Earnings"}
-            </ThemedText>
+            <MaterialIcons name="attach-money" size={12} color="#fff" />
           </View>
         </View>
 
@@ -78,31 +115,61 @@ export default function DriverStatsSection() {
           style={[
             styles.statItem,
             {
-              backgroundColor: "#abebf7",
+              backgroundColor: "#3d95c4",
               borderColor: "#3d95c4",
               borderWidth: 2,
+              flexDirection: "row",
+              alignItems: "flex-start",
+              paddingRight: 0,
             },
           ]}
         >
-          <ThemedText
-            type="subtitle"
-            style={[styles.statValue, { color: "#3d95c4" }]}
+          <View
+            style={{
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flex: 1,
+            }}
           >
-            {driverData.deliveriesCount}
-          </ThemedText>
+            <ThemedText
+              style={[
+                styles.statLabel,
+                {
+                  color: "#fff",
+                  opacity: 0.95,
+                  fontWeight: "600",
+                },
+              ]}
+            >
+              Deliveries
+            </ThemedText>
+            <ThemedText
+              type="default"
+              style={[
+                styles.statValue,
+                {
+                  color: "#fff",
+                  marginTop: 10,
+                  fontSize: 24,
+                },
+              ]}
+            >
+              {driverData.deliveriesCount}
+            </ThemedText>
+          </View>
+
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              gap: 4,
-              paddingTop: 4,
-              opacity: 0.6,
+              padding: 3,
+              marginRight: 6,
+              opacity: 0.8,
+              borderRadius: 50,
+              backgroundColor: "#5ba3cc",
             }}
           >
-            <MaterialIcons name="local-shipping" size={18} color="#16597d" />
-            <ThemedText style={[styles.statLabel, { color: "#16597d" }]}>
-              Deliveries
-            </ThemedText>
+            <MaterialIcons name="local-shipping" size={12} color="#fff" />
           </View>
         </View>
       </View>
@@ -116,33 +183,59 @@ export default function DriverStatsSection() {
             {
               borderColor: "#FFC107",
               borderWidth: 2,
-              backgroundColor: "#fff3cd",
+              backgroundColor: "#FFC107",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              paddingRight: 0,
             },
           ]}
         >
-          <ThemedText
-            type="subtitle"
-            style={[styles.statValue, { color: "#b08710" }]}
+          <View
+            style={{
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flex: 1,
+            }}
           >
-            {driverData.avgDeliveryTime} min
-          </ThemedText>
+            <ThemedText
+              style={[
+                styles.statLabel,
+                {
+                  color: "#fff",
+                  opacity: 0.95,
+                  fontWeight: "600",
+                },
+              ]}
+            >
+              Avg Delivery Time
+            </ThemedText>
+            <ThemedText
+              type="default"
+              style={[
+                styles.statValue,
+                {
+                  color: "#fff",
+                  marginTop: 10,
+                  fontSize: 24,
+                },
+              ]}
+            >
+              {driverData.avgDeliveryTime} min
+            </ThemedText>
+          </View>
+
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
-              paddingTop: 4,
-              opacity: 0.6,
-              gap: 3,
-              width: "100%",
+              padding: 3,
+              marginRight: 6,
+              opacity: 0.8,
+              borderRadius: 50,
+              backgroundColor: "#ffce3d",
             }}
           >
-            <MaterialIcons name="access-time" size={18} color="#856404" />
-            <ThemedText
-              style={[styles.statLabel, { color: "#856404", fontSize: 13 }]}
-            >
-              Avg Delivery Time
-            </ThemedText>
+            <MaterialIcons name="access-time" size={12} color="#fff" />
           </View>
         </View>
 
@@ -151,31 +244,61 @@ export default function DriverStatsSection() {
           style={[
             styles.statItem,
             {
-              backgroundColor: "#f8d7da",
-              borderColor: "#721c24",
+              backgroundColor: "#a11523",
+              borderColor: "#a11523",
               borderWidth: 2,
+              flexDirection: "row",
+              alignItems: "flex-start",
+              paddingRight: 0,
             },
           ]}
         >
-          <ThemedText
-            type="subtitle"
-            style={[styles.statValue, { color: "#721c24" }]}
+          <View
+            style={{
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              flex: 1,
+            }}
           >
-            {driverData.cancelledOrders}
-          </ThemedText>
+            <ThemedText
+              style={[
+                styles.statLabel,
+                {
+                  color: "#fff",
+                  opacity: 0.95,
+                  fontWeight: "600",
+                },
+              ]}
+            >
+              Cancelled Orders
+            </ThemedText>
+            <ThemedText
+              type="default"
+              style={[
+                styles.statValue,
+                {
+                  color: "#fff",
+                  marginTop: 10,
+                  fontSize: 24,
+                },
+              ]}
+            >
+              {driverData.cancelledOrders}
+            </ThemedText>
+          </View>
+
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              gap: 4,
-              paddingTop: 4,
-              opacity: 0.6,
+              padding: 3,
+              marginRight: 6,
+              opacity: 0.8,
+              borderRadius: 50,
+              backgroundColor: "#e85563",
             }}
           >
-            <MaterialIcons name="cancel" size={18} color="#721c24" />
-            <ThemedText style={[styles.statLabel, { color: "#721c24" }]}>
-              Cancelled Orders
-            </ThemedText>
+            <MaterialIcons name="cancel" size={12} color="#fff" />
           </View>
         </View>
       </View>
@@ -202,25 +325,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 6,
     width: "100%",
-    marginBottom: 12, // Add margin between rows
+    marginBottom: 12,
   },
   statItem: {
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 8,
-    padding: 10,
+    padding: 8,
+    paddingHorizontal: 6,
     flex: 1 / 2,
   },
   statValue: {
     color: "#4CAF50",
     marginBottom: 4,
-    fontWeight: "800",
+    marginLeft: 2,
     fontSize: 24,
+    fontFamily: "RedHatDisplay_800ExtraBold_Italic",
   },
   statLabel: {
-    fontSize: 14,
+    fontSize: 12,
     color: "#333",
     textAlign: "center",
-    fontWeight: "700",
+    fontFamily: "RedHatDisplay_600SemiBold",
   },
 });

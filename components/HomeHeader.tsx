@@ -16,7 +16,7 @@ export default function HomeHeader() {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        height: 40,
+        height: 32,
         width: "100%",
         marginBottom: 14,
       }}
@@ -31,7 +31,7 @@ export default function HomeHeader() {
       >
         <Image
           source={translateImage} // Path to your PNG file
-          style={{ width: 40, height: 40 }} // Adjust size and styling
+          style={{ width: 35, height: 35 }} // Adjust size and styling
         />
         <View
           style={{

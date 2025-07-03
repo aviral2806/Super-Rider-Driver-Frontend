@@ -1,13 +1,68 @@
-import { Image } from "expo-image";
-import { Link } from "expo-router";
-import { Platform, StyleSheet } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import PrimaryButton from "@/components/ui/StyledButton";
+import { Image } from "expo-image";
+import * as Notifications from "expo-notifications";
+import { Link } from "expo-router";
+import { useState } from "react";
+import { Alert, Platform, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
+  const [debugInfo, setDebugInfo] = useState<string[]>([]);
+
+  const addDebugInfo = (message: string) => {
+    console.log(message); // Still log to console
+    // setDebugInfo((prev) => [
+    //   ...prev,
+    //   `${new Date().toLocaleTimeString()}: ${message}`,
+    // ]);
+  };
+
+  const sendMockNotification = async () => {
+    try {
+      addDebugInfo("🔄 Starting notification process...");
+
+      // Request permissions first
+      const { status } = await Notifications.requestPermissionsAsync();
+      addDebugInfo(`📱 Permission status: ${status}`);
+
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission required",
+          "Please enable notifications in settings"
+        );
+        addDebugInfo("❌ Permission denied");
+        return;
+      }
+
+      // Schedule notification
+      addDebugInfo("📤 Scheduling notification...");
+      const notificationId = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "New Delivery Request",
+          body: "Pickup at XYZ, Drop at ABC",
+          data: { orderId: "123" },
+        },
+        trigger: null,
+      });
+
+      addDebugInfo(`✅ Notification scheduled with ID: ${notificationId}`);
+      Alert.alert(
+        "Success",
+        "Notification sent! Check your notification center."
+      );
+    } catch (error) {
+      const errorMessage = `❌ Error: ${error}`;
+      addDebugInfo(errorMessage);
+      Alert.alert("Error", "Failed to send notification");
+    }
+  };
+
+  const clearDebugInfo = () => {
+    setDebugInfo([]);
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -19,9 +74,24 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <PrimaryButton
+          title="Send Mock Notification"
+          onPress={sendMockNotification}
+        />
+        <PrimaryButton title="Clear Debug" onPress={clearDebugInfo} />
       </ThemedView>
+
+      {/* Debug Info Display */}
+      {debugInfo.length > 0 && (
+        <ThemedView style={styles.debugContainer}>
+          <ThemedText type="subtitle">Debug Info:</ThemedText>
+          {debugInfo.map((info, index) => (
+            <ThemedText key={index} style={styles.debugText}>
+              {info}
+            </ThemedText>
+          ))}
+        </ThemedView>
+      )}
 
       {/* Driver Dashboard Link */}
       <ThemedView style={styles.stepContainer}>
@@ -75,9 +145,20 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     gap: 8,
+  },
+  debugContainer: {
+    backgroundColor: "#f0f0f0",
+    padding: 10,
+    borderRadius: 8,
+    marginVertical: 10,
+  },
+  debugText: {
+    fontSize: 12,
+    fontFamily: "monospace",
+    marginVertical: 2,
   },
   stepContainer: {
     gap: 8,
